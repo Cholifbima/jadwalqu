@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Jadwalku Studio - Theme 1: Sticky Note Bento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500;600;700&family=Kalam:wght@400;700&family=Montserrat:wght@400;600;700;800&family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- html2canvas for high-res export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- SIDEBAR CONTROLS (Desktop: Left Panel, Mobile/Tablet: Floating Bottom Sheet Drawer) -->
+    <aside class="sidebar" id="sidebar">
+      <!-- Mobile Floating Drawer Handle Bar (Direct Access Controls) -->
+      <div class="drawer-handle-bar" id="drawerHandleBar">
+        <button type="button" class="drawer-capsule-btn primary-schedule-btn" id="btnOpenClassDrawerDirect" title="Kelola Jadwal Pelajaran">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span class="capsule-label">Jadwal Pelajaran</span>
+        </button>
+        <button type="button" class="drawer-capsule-btn secondary-layout-btn" id="btnToggleDrawer" aria-label="Toggle Menu Drawer">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span class="capsule-label">Pengaturan & Layout</span>
+        </button>
+      </div>
+
+      <div class="sidebar-scroll-content" id="sidebarScrollContent">
+        <div class="sidebar-header">
+          <div class="logo-tag">THEME 01</div>
+          <h1>Sticky Note Bento</h1>
+          <p class="subtitle">Tactile Stationery & Studygram Aesthetic</p>
+        </div>
+
+        <div class="control-section">
+          <label class="section-label">Pilih Format / Rasio Resolusi</label>
+          <div class="ratio-selector">
+          <button class="ratio-btn active" data-ratio="phone" id="btnRatioPhone">
+            <span class="ratio-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></span>
+            <span class="ratio-title">Phone Wallpaper</span>
+            <span class="ratio-dim">9:16 (All-in-One)</span>
+          </button>
+          <button class="ratio-btn" data-ratio="desktop" id="btnRatioDesktop">
+            <span class="ratio-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></span>
+            <span class="ratio-title">Desktop PC</span>
+            <span class="ratio-dim">16:9 Wallpaper</span>
+          </button>
+          <button class="ratio-btn" data-ratio="tablet" id="btnRatioTablet">
+            <span class="ratio-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></span>
+            <span class="ratio-title">Tablet / iPad</span>
+            <span class="ratio-dim">4:3 Bento Grid</span>
+          </button>
+          <button class="ratio-btn" data-ratio="sticky" id="btnRatioSticky">
+            <span class="ratio-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8z"></path><polyline points="14 3 14 8 19 8"></polyline></svg></span>
+            <span class="ratio-title">Solo Sticky</span>
+            <span class="ratio-dim">1:1 Square Widget</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="control-section" id="mobileDensitySection">
+        <label class="section-label">Density & Layout Mode (Mobile)</label>
+
+        <div class="option-block">
+          <label class="option-label">Kepadatan Baris (Density)</label>
+          <div class="chip-selector-grid3" id="densityChipGroup">
+            <button type="button" class="density-card active" data-value="compact">
+              <div class="mini-bento-preview">
+                <div class="mini-washi-tape"></div>
+                <div class="mini-pin"></div>
+                <div class="mini-bento-header">
+                  <span class="mini-day-name">⠿ SENIN</span>
+                  <span class="mini-count-badge">3</span>
+                </div>
+                <div class="mini-events-container">
+                  <div class="mini-event-card accent-green">
+                    <div class="mini-event-top">
+                      <span class="mini-time">08:00 - 10:30</span>
+                      <span class="mini-room">Lab Komp 3</span>
+                    </div>
+                    <div class="mini-subject">Pemrograman Web Lanjut</div>
+                  </div>
+
+                  <div class="mini-event-card accent-blue">
+                    <div class="mini-event-top">
+                      <span class="mini-time">10:45 - 12:15</span>
+                      <span class="mini-room">R. 201</span>
+                    </div>
+                    <div class="mini-subject">Struktur Data & Algoritma</div>
+                  </div>
+
+                  <div class="mini-event-card accent-blue">
+                    <div class="mini-event-top">
+                      <span class="mini-time">13:30 - 15:30</span>
+                      <span class="mini-room">R. 204</span>
+                    </div>
+                    <div class="mini-subject">Kecerdasan Buatan (AI)</div>
+                  </div>
+                </div>
+              </div>
+              <span class="chip-label">Ringkas</span>
+            </button>
+
+            <button type="button" class="density-card" data-value="ultra">
+              <div class="mini-bento-preview">
+                <div class="mini-washi-tape"></div>
+                <div class="mini-pin"></div>
+                <div class="mini-bento-header">
+                  <span class="mini-day-name">⠿ SENIN</span>
+                  <span class="mini-count-badge">4</span>
+                </div>
+                <div class="mini-events-container">
+                  <div class="mini-ultra-row accent-green">
+                    <span class="ultra-time">08:00</span>
+                    <span class="ultra-name">Pemrograman Web</span>
+                  </div>
+                  <div class="mini-ultra-row accent-blue">
+                    <span class="ultra-time">09:30</span>
+                    <span class="ultra-name">Struktur Data</span>
+                  </div>
+                  <div class="mini-ultra-row accent-amber">
+                    <span class="ultra-time">11:00</span>
+                    <span class="ultra-name">Kecerdasan AI</span>
+                  </div>
+                  <div class="mini-ultra-row accent-rose">
+                    <span class="ultra-time">13:00</span>
+                    <span class="ultra-name">Bahasa Inggris</span>
+                  </div>
+                </div>
+              </div>
+              <span class="chip-label">Super Padat</span>
+            </button>
+
+            <button type="button" class="density-card" data-value="comfortable">
+              <div class="mini-bento-preview">
+                <div class="mini-washi-tape"></div>
+                <div class="mini-pin"></div>
+                <div class="mini-bento-header">
+                  <span class="mini-day-name">⠿ SENIN</span>
+                  <span class="mini-count-badge">1</span>
+                </div>
+                <div class="mini-events-container">
+                  <div class="mini-event-card accent-green mini-comfortable-card">
+                    <div class="mini-event-top">
+                      <span class="mini-time">08:00 - 10:30</span>
+                      <span class="mini-room">Lab Komp 3</span>
+                    </div>
+                    <div class="mini-subject">Pemrograman Web Lanjut</div>
+                    <div class="mini-note-text">― Bawa laptop & charger</div>
+                  </div>
+                </div>
+              </div>
+              <span class="chip-label">Lega & Detail</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-section">
+        <label class="section-label">Custom Background & Blend Engine</label>
+        
+        <div class="option-block">
+          <label class="option-label">Tipe Background</label>
+          <div class="chip-selector-grid2" id="bgTypeChipGroup">
+            <button type="button" class="chip-btn visual-card-btn active" data-value="preset">
+              <div class="visual-bg-preview preview-preset">
+                <div class="mini-note-card"></div>
+              </div>
+              <span class="chip-title">Preset Texture</span>
+              <span class="chip-sub">Linen, Cork, Dot</span>
+            </button>
+            <button type="button" class="chip-btn visual-card-btn" data-value="custom">
+              <div class="visual-bg-preview preview-custom">
+                <div class="mini-glass-card"></div>
+              </div>
+              <span class="chip-title">Upload Foto</span>
+              <span class="chip-sub">Wallpaper Sendiri</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="presetBgControls">
+          <div class="option-block">
+            <label class="option-label">Pilihan Texture Background</label>
+            <div class="texture-card-grid" id="bgTextureChipGroup">
+              <button type="button" class="texture-card active" data-value="warm-linen">
+                <div class="tex-preview tex-linen"></div>
+                <span class="texture-name">Warm Linen</span>
+              </button>
+              <button type="button" class="texture-card" data-value="dot-grid">
+                <div class="tex-preview tex-dot"></div>
+                <span class="texture-name">Dot Grid</span>
+              </button>
+              <button type="button" class="texture-card" data-value="corkboard">
+                <div class="tex-preview tex-cork"></div>
+                <span class="texture-name">Cozy Cork</span>
+              </button>
+              <button type="button" class="texture-card" data-value="sage-desk">
+                <div class="tex-preview tex-sage"></div>
+                <span class="texture-name">Matcha Desk</span>
+              </button>
+              <button type="button" class="texture-card" data-value="dark-slate">
+                <div class="tex-preview tex-slate"></div>
+                <span class="texture-name">Dark Slate</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="customBgControls" style="display: none;">
+          <div class="option-row">
+            <label for="customBgInput">Upload Foto Wallpaper</label>
+            <input type="file" id="customBgInput" accept="image/*" class="custom-file-input">
+          </div>
+
+          <div class="option-block" style="margin-top: 8px;">
+            <label class="option-label">Filter Blend Wallpaper</label>
+            <div class="scrim-chip-grid" id="scrimChipGroup">
+              <button type="button" class="scrim-card active" data-value="scrim-frosted-cream">
+                <div class="scrim-preview scrim-preview-frosted">
+                  <div class="scrim-mini-card"></div>
+                </div>
+                <span class="scrim-text">Frosted Cream</span>
+              </button>
+              <button type="button" class="scrim-card" data-value="scrim-dark-matte">
+                <div class="scrim-preview scrim-preview-dark">
+                  <div class="scrim-mini-card"></div>
+                </div>
+                <span class="scrim-text">Dark Matte</span>
+              </button>
+              <button type="button" class="scrim-card" data-value="scrim-soft-multiply">
+                <div class="scrim-preview scrim-preview-paper">
+                  <div class="scrim-mini-card"></div>
+                </div>
+                <span class="scrim-text">Paper Multiply</span>
+              </button>
+              <button type="button" class="scrim-card" data-value="scrim-none">
+                <div class="scrim-preview scrim-preview-none">
+                  <div class="scrim-mini-card"></div>
+                </div>
+                <span class="scrim-text">No Filter</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="slider-row">
+            <div class="slider-label-row">
+              <span>Background Blur</span>
+              <span id="blurValueText">4px</span>
+            </div>
+            <input type="range" id="sliderBgBlur" min="0" max="20" value="4" class="custom-range">
+          </div>
+
+          <div class="slider-row">
+            <div class="slider-label-row">
+              <span>Tint / Dimming</span>
+              <span id="dimValueText">45%</span>
+            </div>
+            <input type="range" id="sliderBgDim" min="0" max="85" value="45" class="custom-range">
+          </div>
+
+          <div class="slider-row">
+            <div class="slider-label-row">
+              <span>Card Glass Translucency</span>
+              <span id="cardOpacityText">90%</span>
+            </div>
+            <input type="range" id="sliderCardOpacity" min="50" max="100" value="90" class="custom-range">
+          </div>
+        </div>
+
+        <div class="option-block" style="margin-top: 14px;">
+          <label class="option-label">Palette Sticky Note</label>
+          <div class="palette-card-grid" id="paletteChipGroup">
+            <button type="button" class="palette-chip active" data-value="pastel-study">
+              <div class="palette-mini-notes">
+                <span class="mini-note" style="background: #fef08a;"></span>
+                <span class="mini-note" style="background: #bbf7d0;"></span>
+                <span class="mini-note" style="background: #fed7aa;"></span>
+              </div>
+              <span class="palette-name">Pastel Studygram</span>
+            </button>
+
+            <button type="button" class="palette-chip" data-value="warm-autumn">
+              <div class="palette-mini-notes">
+                <span class="mini-note" style="background: #fbf0d9;"></span>
+                <span class="mini-note" style="background: #e2c290;"></span>
+                <span class="mini-note" style="background: #d97757;"></span>
+              </div>
+              <span class="palette-name">Warm Autumn</span>
+            </button>
+
+            <button type="button" class="palette-chip" data-value="lavender-dream">
+              <div class="palette-mini-notes">
+                <span class="mini-note" style="background: #e9d5ff;"></span>
+                <span class="mini-note" style="background: #f1f5f9;"></span>
+                <span class="mini-note" style="background: #bae6fd;"></span>
+              </div>
+              <span class="palette-name">Dreamy Lavender</span>
+            </button>
+
+            <button type="button" class="palette-chip" data-value="monochrome-paper">
+              <div class="palette-mini-notes">
+                <span class="mini-note" style="background: #f5f5f4;"></span>
+                <span class="mini-note" style="background: #e7e5e4;"></span>
+                <span class="mini-note" style="background: #d6d3d1;"></span>
+              </div>
+              <span class="palette-name">Monochrome Kraft</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="option-block" style="margin-top: 14px;">
+          <label class="option-label">Aksen Dekorasi Stationery (Visual Toggle)</label>
+          <div class="decor-visual-grid">
+            <button type="button" class="decor-visual-card active" id="btnVisualWashiTape" title="Toggle Washi Tape pada Sticky Notes">
+              <div class="decor-card-preview preview-tape">
+                <div class="preview-tape-strip"></div>
+                <div class="preview-mini-note"></div>
+              </div>
+              <div class="decor-card-info">
+                <span class="decor-title">Washi Tape</span>
+                <span class="decor-badge" id="badgeWashiTape">ON</span>
+              </div>
+            </button>
+
+            <button type="button" class="decor-visual-card active" id="btnVisualPushPin" title="Toggle Push Pin Metal 📍 pada Sticky Notes">
+              <div class="decor-card-preview preview-pin">
+                <div class="preview-pin-head"></div>
+                <div class="preview-mini-note"></div>
+              </div>
+              <div class="decor-card-info">
+                <span class="decor-title">Push Pin 📍</span>
+                <span class="decor-badge" id="badgePushPin">ON</span>
+              </div>
+            </button>
+
+            <button type="button" class="decor-visual-card active" id="btnVisualPaperclip" title="Toggle Paperclip Metal 📎 pada Sticky Notes">
+              <div class="decor-card-preview preview-clip">
+                <div class="preview-clip-wire"></div>
+                <div class="preview-mini-note"></div>
+              </div>
+              <div class="decor-card-info">
+                <span class="decor-title">Paperclip 📎</span>
+                <span class="decor-badge" id="badgePaperclip">ON</span>
+              </div>
+            </button>
+
+            <button type="button" class="decor-visual-card active" id="btnVisualFrosted" title="Toggle Efek Transparan Kaca Frosted Glass">
+              <div class="decor-card-preview preview-frosted">
+                <div class="preview-glass-box"></div>
+              </div>
+              <div class="decor-card-info">
+                <span class="decor-title">Frosted Glass</span>
+                <span class="decor-badge" id="badgeFrosted">ON</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="control-section">
+        <div class="section-header-flex">
+          <label class="section-label">Data Jadwal (Live Edit)</label>
+          <button class="small-action-btn" id="btnResetSample">Reset Sample</button>
+        </div>
+
+        <div class="schedule-editor-list" id="scheduleEditorList">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <button class="add-item-btn" id="btnAddSchedule">
+          <span>+ Tambah Jadwal Baru</span>
+        </button>
+      </div>
+
+        <div class="sidebar-footer">
+          <button class="export-btn" id="btnExportImage">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Export HD Wallpaper (PNG)
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- PREVIEW STAGE -->
+    <main class="preview-stage">
+      <!-- MAIN HEADER TOOLBAR (Always Visible, Compact Single Row) -->
+      <div class="preview-toolbar" id="previewToolbar">
+        <!-- Section 1: History Controls (Undo / Redo / Reset) -->
+        <div class="toolbar-section section-history">
+          <button type="button" class="tool-btn-pill" id="btnUndo" title="Undo (Batal)" disabled>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+            <span class="btn-label">Undo</span>
+          </button>
+          <button type="button" class="tool-btn-pill" id="btnRedo" title="Redo (Ulangi)" disabled>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.13-9.36L23 10"></path></svg>
+            <span class="btn-label">Redo</span>
+          </button>
+          <button type="button" class="tool-btn-pill btn-reset-pill" id="btnResetTemplate" title="Reset ke Template Awal">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+            <span class="btn-label">Reset</span>
+          </button>
+        </div>
+
+        <!-- Section 2: Layout Mode & Pan Control -->
+        <div class="toolbar-section section-tools">
+          <button type="button" class="tool-btn-pill canva-pan-toggle-btn" id="btnTogglePanCanvas" title="Navigasi Layar Papan: ON untuk geser & pinch-zoom seluruh canvas, OFF untuk edit konten">
+            <span id="panIcon">✋</span>
+            <span class="btn-label" id="panLabel">Geser Layar: OFF</span>
+          </button>
+          <button type="button" class="canva-tool-action-btn" id="btnCanvaAddDay" title="Tambah Hari / Sticky Note Baru">
+            <span class="btn-icon">＋</span>
+            <span class="btn-label">Sticky Baru</span>
+          </button>
+        </div>
+
+        <!-- Section 3: Zoom Controls & Download Icon -->
+        <div class="toolbar-section section-actions">
+          <div class="zoom-pill-wrap">
+            <button type="button" class="tool-btn-sm" id="btnZoomOut" title="Zoom Out">−</button>
+            <span class="zoom-level" id="zoomLevelText">70%</span>
+            <button type="button" class="tool-btn-sm" id="btnZoomIn" title="Zoom In">+</button>
+          </div>
+          <button type="button" class="canva-export-quick-btn" id="btnQuickExport" title="Export & Download Gambar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- COLLAPSIBLE SLIDE-DOWN TYPOGRAPHY & FORMATTING DRAWER -->
+      <div class="canva-typography-ribbon" id="canvaTypographyRibbon">
+        <div class="ribbon-inner-track">
+          <!-- Active Target Pill -->
+          <div class="ribbon-active-pill" id="ribbonActivePill" title="Elemen yang Sedang Dipilih">
+            <span class="active-dot"></span>
+            <span id="activeElementLabel">Pilih Teks</span>
+          </div>
+
+          <div class="ribbon-divider"></div>
+
+          <!-- Custom Canva Font Dropdown -->
+          <div class="canva-font-dropdown-wrap" id="canvaFontDropdownWrap">
+            <button type="button" class="canva-font-trigger-btn" id="fontDropdownTrigger" title="Pilih Jenis Font">
+              <span id="currentFontName">Plus Jakarta Sans</span>
+              <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+
+            <div class="canva-font-menu" id="canvaFontMenu">
+              <div class="font-menu-header">PILIH JENIS FONT</div>
+              <button type="button" class="font-menu-item active" data-font="Plus Jakarta Sans" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                <span class="font-preview-name">Plus Jakarta Sans</span>
+                <span class="font-badge">Default Modern</span>
+              </button>
+              <button type="button" class="font-menu-item" data-font="Caveat" style="font-family: 'Caveat', cursive;">
+                <span class="font-preview-name" style="font-size: 16px;">Caveat Handwriting</span>
+                <span class="font-badge">Aesthetic</span>
+              </button>
+              <button type="button" class="font-menu-item" data-font="Kalam" style="font-family: 'Kalam', cursive;">
+                <span class="font-preview-name">Kalam Casual</span>
+                <span class="font-badge">Marker</span>
+              </button>
+              <button type="button" class="font-menu-item" data-font="Outfit" style="font-family: 'Outfit', sans-serif;">
+                <span class="font-preview-name">Outfit Clean Modern</span>
+                <span class="font-badge">Clean</span>
+              </button>
+              <button type="button" class="font-menu-item" data-font="JetBrains Mono" style="font-family: 'JetBrains Mono', monospace;">
+                <span class="font-preview-name">JetBrains Mono</span>
+                <span class="font-badge">Monospace</span>
+              </button>
+              <button type="button" class="font-menu-item" data-font="Playfair Display" style="font-family: 'Playfair Display', serif;">
+                <span class="font-preview-name" style="font-style: italic;">Playfair Display</span>
+                <span class="font-badge">Serif Elegan</span>
+              </button>
+              <button type="button" class="font-menu-item" data-font="DM Serif Display" style="font-family: 'DM Serif Display', serif;">
+                <span class="font-preview-name">DM Serif Display</span>
+                <span class="font-badge">Editorial</span>
+              </button>
+              <button type="button" class="font-menu-item" data-font="Montserrat" style="font-family: 'Montserrat', sans-serif;">
+                <span class="font-preview-name" style="font-weight: 700;">Montserrat Bold</span>
+                <span class="font-badge">Modern Bold</span>
+              </button>
+              <button type="button" class="font-menu-item" data-font="Space Mono" style="font-family: 'Space Mono', monospace;">
+                <span class="font-preview-name">Space Mono</span>
+                <span class="font-badge">Retro Code</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="ribbon-divider"></div>
+
+          <!-- Font Size Controls -->
+          <div class="canva-size-control">
+            <button class="ribbon-btn" id="btnFontSizeDec" title="Kecilkan Ukuran Font">−</button>
+            <span id="fontSizeDisplay" class="font-size-text">12px</span>
+            <button class="ribbon-btn" id="btnFontSizeInc" title="Besarkan Ukuran Font">+</button>
+          </div>
+
+          <div class="ribbon-divider"></div>
+
+          <!-- Color Wheels (Text & Card BG) -->
+          <div class="ribbon-group-colors">
+            <!-- Text Color Wheel Picker -->
+            <label class="canva-color-picker-wrap" id="textColorWrap" title="Color Wheel: Ubah Warna Teks">
+              <input type="color" id="textColorPicker" value="#0f172a">
+              <span class="color-indicator-icon">A</span>
+              <span class="color-indicator-bar" id="textColorBar" style="background-color: #0f172a;"></span>
+            </label>
+
+            <!-- Card Note Color Wheel Picker -->
+            <label class="canva-color-picker-wrap" id="cardColorWrap" title="Color Wheel: Ubah Warna Background Sticky Note">
+              <input type="color" id="cardColorPicker" value="#fff9db">
+              <span class="color-card-icon">🎨</span>
+              <span class="color-indicator-bar" id="cardColorBar" style="background-color: #fff9db;"></span>
+            </label>
+          </div>
+
+          <div class="ribbon-divider"></div>
+
+          <!-- Formatting Toggles (Bold, Italic, Underline) -->
+          <div class="ribbon-group-formats">
+            <button class="ribbon-btn" id="btnToggleBold" title="Tebalkan Font (Bold)"><b>B</b></button>
+            <button class="ribbon-btn" id="btnToggleItalic" title="Miringkan Font (Italic)"><i>I</i></button>
+            <button class="ribbon-btn" id="btnToggleUnderline" title="Garis Bawah (Underline)"><u>U</u></button>
+          </div>
+
+          <div class="ribbon-divider"></div>
+
+          <!-- Alignments -->
+          <div class="ribbon-group-align">
+            <button class="ribbon-btn" id="btnAlignLeft" title="Rata Kiri">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="17" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="17" y1="18" x2="3" y2="18"></line></svg>
+            </button>
+            <button class="ribbon-btn" id="btnAlignCenter" title="Rata Tengah">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="10" x2="6" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="18" y1="18" x2="6" y2="18"></line></svg>
+            </button>
+            <button class="ribbon-btn" id="btnAlignRight" title="Rata Kanan">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="21" y1="10" x2="7" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="7" y2="18"></line></svg>
+            </button>
+          </div>
+
+          <div class="ribbon-divider"></div>
+
+          <!-- Close Ribbon Button -->
+          <button class="ribbon-close-btn" id="btnCloseRibbon" title="Tutup Menu Format">✕</button>
+        </div>
+      </div>
+
+      <div class="canvas-viewport" id="canvasViewport">
+        <div class="canvas-stage-wrapper" id="canvasStageWrapper">
+          <!-- Floating Status Banner when Panning Board is Active -->
+          <div class="canva-pan-mode-banner" id="panModeBanner" style="display: none;">
+            <span>✋ Mode Navigasi Papan (Aktif)</span>
+            <span class="sub-text">• Geser Layar & Pinch Zoom</span>
+          </div>
+
+          <!-- Floating Guidance Banner when Selecting Note for Pin/Clip -->
+          <div class="canva-pan-mode-banner fastener-guide-banner" id="fastenerGuideBanner" style="display: none; background: rgba(245, 158, 11, 0.95); color: #0f172a; border: 1.5px solid #f59e0b; box-shadow: 0 8px 24px rgba(245, 158, 11, 0.4);">
+            <span id="fastenerGuideText">📍 Klik note hari mana yang ingin Anda pasang Pin</span>
+            <span class="sub-text" style="color: #451a03;">• Klik note mana saja di canvas</span>
+          </div>
+
+          <!-- THE EXPORTABLE CONTAINER -->
+          <div class="schedule-canvas ratio-phone bg-warm-linen card-glass-frosted" id="scheduleCanvas">
+
+          <!-- Dynamic Canva Smart Alignment Guide Lines -->
+          <div class="canva-guide-line guide-x" id="guideLineX"></div>
+          <div class="canva-guide-line guide-y" id="guideLineY"></div>
+
+          <!-- Floating Coordinate Drag Tooltip -->
+          <div class="canva-floating-coord-tooltip" id="floatingCoordTooltip">X: 0, Y: 0</div>
+
+          <!-- Background Image & Scrim Blending Layers -->
+          <div class="canvas-bg-image-layer" id="canvasBgImageLayer"></div>
+          <div class="canvas-scrim-layer scrim-frosted-cream" id="canvasScrimLayer"></div>
+
+          <!-- CANVAS HEADER (Title + Aesthetic Stamp) -->
+          <header class="canvas-header">
+            <div class="header-stamp canva-decorator-element" id="decoratorHeaderStamp" data-dec="headerStamp">
+              <div class="canva-decorator-toolbar toolbar-align-left">
+                <button type="button" class="canva-btn-mini btn-dec-rotate-left" data-dec="headerStamp" title="Putar Kiri">⟲</button>
+                <button type="button" class="canva-btn-mini btn-dec-rotate-right" data-dec="headerStamp" title="Putar Kanan">⟳</button>
+                <button type="button" class="canva-btn-mini btn-dec-delete" data-dec="headerStamp" style="color: #f87171;" title="Hapus Banner">✕ Hapus</button>
+              </div>
+              <span class="stamp-pill canva-editable-text" contenteditable="false" spellcheck="false" title="Klik 2x untuk edit teks">WEEKLY TIMETABLE</span>
+              <span class="handwritten-accent canva-editable-text" contenteditable="false" spellcheck="false" title="Klik 2x untuk edit subjudul">Semester Genap • 2026</span>
+            </div>
+
+            <div class="header-pinned-note canva-decorator-element" id="decoratorHeaderGoals" data-dec="headerGoals">
+              <div class="canva-decorator-toolbar toolbar-align-right">
+                <button type="button" class="canva-btn-mini btn-dec-color" data-dec="headerGoals" title="Ganti Warna Note">🎨 Warna</button>
+                <button type="button" class="canva-btn-mini btn-dec-rotate-left" data-dec="headerGoals" title="Putar Kiri">⟲</button>
+                <button type="button" class="canva-btn-mini btn-dec-rotate-right" data-dec="headerGoals" title="Putar Kanan">⟳</button>
+                <button type="button" class="canva-btn-mini btn-dec-delete" data-dec="headerGoals" style="color: #f87171;" title="Hapus Note">✕ Hapus</button>
+              </div>
+              <div class="washi-tape tape-peach"></div>
+              <div class="pin-clip"><div class="minimal-pin"></div></div>
+              <p class="handwritten-title canva-editable-text" contenteditable="false" spellcheck="false" title="Klik 2x untuk edit judul note">Weekly Goals</p>
+              <p class="handwritten-desc canva-editable-text" contenteditable="false" spellcheck="false" title="Klik 2x untuk edit isi note">Focus, consistency, and daily progress.</p>
+            </div>
+          </header>
+
+          <!-- STICKY NOTES BENTO GRID CONTAINER -->
+          <div class="bento-board" id="bentoBoard">
+            <!-- Dynamic Sticky Cards Generated by JS -->
+          </div>
+
+          <!-- CANVAS FOOTER DECORATION -->
+          <footer class="canvas-footer">
+            <div class="aesthetic-barcode canva-decorator-element" id="decoratorFooterBarcode" data-dec="footerBarcode">
+              <div class="canva-decorator-toolbar toolbar-align-left">
+                <button type="button" class="canva-btn-mini btn-dec-rotate-left" data-dec="footerBarcode" title="Putar Kiri">⟲</button>
+                <button type="button" class="canva-btn-mini btn-dec-rotate-right" data-dec="footerBarcode" title="Putar Kanan">⟳</button>
+                <button type="button" class="canva-btn-mini btn-dec-delete" data-dec="footerBarcode" style="color: #f87171;" title="Hapus Barcode">✕ Hapus</button>
+              </div>
+              <span class="bars">||||| | |||| ||| ||||| |||</span>
+              <span class="barcode-text canva-editable-text" contenteditable="false" spellcheck="false" title="Klik 2x untuk edit barcode text">SCHEDULE-STUDYGRAM-V1.0</span>
+            </div>
+
+            <div class="quote-tag handwritten-font canva-decorator-element" id="decoratorFooterQuote" data-dec="footerQuote">
+              <div class="canva-decorator-toolbar toolbar-align-right">
+                <button type="button" class="canva-btn-mini btn-dec-rotate-left" data-dec="footerQuote" title="Putar Kiri">⟲</button>
+                <button type="button" class="canva-btn-mini btn-dec-rotate-right" data-dec="footerQuote" title="Putar Kanan">⟳</button>
+                <button type="button" class="canva-btn-mini btn-dec-delete" data-dec="footerQuote" style="color: #f87171;" title="Hapus Kutipan">✕ Hapus</button>
+              </div>
+              <span class="canva-editable-text" contenteditable="false" spellcheck="false" title="Klik 2x untuk edit kutipan motivasi">One day or Day one. You decide.</span>
+            </div>
+          </footer>
+
+        </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- CUSTOM JADWALKU AESTHETIC COLOR PICKER MODAL -->
+  <div class="canva-color-modal-overlay" id="canvaColorModalOverlay" style="display: none;">
+    <div class="canva-color-modal-content">
+      <div class="canva-color-modal-header">
+        <div class="canva-color-modal-title">
+          <span id="canvaColorModalIcon">●</span>
+          <span id="canvaColorModalTitle">Pilih Warna Canvas</span>
+        </div>
+        <button type="button" class="canva-color-modal-close" id="btnCloseColorModal">✕</button>
+      </div>
+
+      <!-- Palette Category Selector Tabs -->
+      <div class="color-tabs-bar">
+        <button type="button" class="color-tab-btn active" id="tabBtnPalettes" data-tab="preset-palettes">Palette Tema</button>
+        <button type="button" class="color-tab-btn" id="tabBtnWheel" data-tab="custom-wheel">Color Wheel</button>
+      </div>
+
+      <!-- TAB 1: PRESET THEME PALETTES -->
+      <div class="color-tab-content active" id="tabPresetPalettes">
+        <!-- Section A: Studygram Soft Pastels -->
+        <div class="palette-group">
+          <div class="palette-group-title">Pastel Studygram</div>
+          <div class="palette-swatch-grid">
+            <button type="button" class="custom-palette-swatch" data-color="#fff9db" style="background: #fff9db;" title="Butter Yellow"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#e8f5e9" style="background: #e8f5e9;" title="Matcha Green"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#ffebe6" style="background: #ffebe6;" title="Peach Sunset"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#f3e8ff" style="background: #f3e8ff;" title="Lavender Dream"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#e0f2fe" style="background: #e0f2fe;" title="Sky Blue"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#eddcc9" style="background: #eddcc9;" title="Kraft Paper"></button>
+          </div>
+        </div>
+
+        <!-- Section B: Warm Academic / Coquette Vintage -->
+        <div class="palette-group">
+          <div class="palette-group-title">Warm Vintage Academic</div>
+          <div class="palette-swatch-grid">
+            <button type="button" class="custom-palette-swatch" data-color="#f8f4e6" style="background: #f8f4e6;" title="Warm Linen"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#dce7e1" style="background: #dce7e1;" title="Sage Herb"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#f7d6d0" style="background: #f7d6d0;" title="Dusty Rose"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#e6dfd5" style="background: #e6dfd5;" title="Earl Grey Milk Tea"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#eee8db" style="background: #eee8db;" title="Warm Oat"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#f3d5b5" style="background: #f3d5b5;" title="Apricot Cream"></button>
+          </div>
+        </div>
+
+        <!-- Section C: Dark Bento / Slate Tones -->
+        <div class="palette-group">
+          <div class="palette-group-title">Dark Bento</div>
+          <div class="palette-swatch-grid">
+            <button type="button" class="custom-palette-swatch" data-color="#1e293b" style="background: #1e293b;" title="Midnight Slate"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#162a22" style="background: #162a22;" title="Dark Matcha"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#2e1b28" style="background: #2e1b28;" title="Muted Mulberry"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#262626" style="background: #262626;" title="Charcoal Paper"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#172554" style="background: #172554;" title="Deep Navy"></button>
+            <button type="button" class="custom-palette-swatch" data-color="#3f2e56" style="background: #3f2e56;" title="Deep Lavender"></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CUSTOM COLOR WHEEL CANVAS -->
+      <div class="color-tab-content" id="tabCustomWheel" style="display: none;">
+        <div class="wheel-picker-container">
+          <div class="spectrum-canvas-wrap">
+            <canvas id="colorSpectrumCanvas" width="280" height="140"></canvas>
+            <div class="spectrum-picker-pointer" id="spectrumPointer"></div>
+          </div>
+          <div class="hue-slider-wrap">
+            <label>Hue Spectrum:</label>
+            <input type="range" id="hueRangeSlider" min="0" max="360" value="0">
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Live Hex & Action -->
+      <div class="color-modal-footer">
+        <div class="hex-preview-row">
+          <div class="color-preview-box" id="modalColorPreviewBox" style="background-color: #fff9db;"></div>
+          <input type="text" class="hex-input-field" id="modalHexInput" value="#FFF9DB" maxlength="7">
+        </div>
+        <button type="button" class="btn-apply-modal-color" id="btnApplyModalColor">Pilih Warna</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI FLOATING ACTION BUTTON (FAB) -->
+  <button type="button" class="ai-fab-btn" id="btnOpenAiModal" title="AI Schedule Auto-Fill (gpt-5.6-luna)">
+    <span class="ai-fab-icon">✨</span>
+    <span class="ai-fab-label">AI Auto-Fill</span>
+  </button>
+
+  <!-- AI AUTO-FILL SCHEDULE FLOATING MODAL -->
+  <div class="canva-color-modal-overlay" id="aiModalOverlay" style="display: none;">
+    <div class="canva-color-modal-content ai-modal-content">
+      <div class="canva-color-modal-header">
+        <div class="canva-color-modal-title">
+          <span class="ai-spark-badge">✨ AI</span>
+          <span>Auto-Fill Jadwal</span>
+        </div>
+        <button type="button" class="canva-color-modal-close" id="btnCloseAiModal">✕</button>
+      </div>
+
+      <!-- Mode Tabs: Text vs Gambar -->
+      <div class="color-tabs-bar">
+        <button type="button" class="color-tab-btn active" id="tabBtnAiText" data-tab="ai-text">Input Teks</button>
+        <button type="button" class="color-tab-btn" id="tabBtnAiImage" data-tab="ai-image">Scan Gambar</button>
+      </div>
+
+      <!-- TAB 1: INPUT TEKS -->
+      <div class="color-tab-content active" id="tabAiText">
+        <div class="ai-input-group">
+          <label class="ai-field-label">Paste Teks Jadwal (KRS / Catatan):</label>
+          <textarea class="ai-textarea" id="aiScheduleTextInput" placeholder="Contoh:&#10;Senin 08.00 - 10.30 Web Lanjut Lab 3&#10;Selasa 10.45 - 12.15 Basdat R.201..."></textarea>
+        </div>
+      </div>
+
+      <!-- TAB 2: UPLOAD GAMBAR -->
+      <div class="color-tab-content" id="tabAiImage" style="display: none;">
+        <div class="ai-input-group">
+          <label class="ai-field-label">Upload Foto Jadwal (PNG/JPG):</label>
+          <div class="ai-dropzone" id="aiDropzone">
+            <input type="file" id="aiImageFileInput" accept="image/png, image/jpeg, image/webp" style="display: none;">
+            <div class="dropzone-content" id="dropzoneContent">
+              <span class="dropzone-icon">📷</span>
+              <span class="dropzone-text">Klik / Drag Foto Jadwal di sini</span>
+              <span class="dropzone-sub">Dioptimasi hemat token (low detail)</span>
+            </div>
+            <img id="aiImagePreview" alt="Preview Jadwal" style="display: none; max-height: 120px; border-radius: 8px; margin-top: 8px; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Status & Loading Indicator -->
+      <div class="ai-status-row" id="aiStatusRow" style="display: none;">
+        <div class="ai-spinner"></div>
+        <span id="aiStatusText">Memproses AI (Model: gpt-5.6-luna)...</span>
+      </div>
+
+      <!-- Footer Action Buttons -->
+      <div class="color-modal-footer">
+        <button type="button" class="btn-apply-modal-color" id="btnProcessAiImport" style="background: linear-gradient(135deg, #8b5cf6, #6366f1); color: #fff;">
+          ✨ Auto-Fill Jadwal dengan AI
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- DEDICATED CLASS MANAGEMENT SIDE-OVER DRAWER (RIGHT PANEL) -->
+  <div class="class-drawer-overlay" id="classDrawerOverlay" style="display: none;"></div>
+  <aside class="class-management-drawer" id="classManagementDrawer">
+    <div class="class-drawer-header">
+      <div class="class-drawer-title-wrap">
+        <div class="class-drawer-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        </div>
+        <div>
+          <h3 class="class-drawer-title">Edit Mata Kuliah</h3>
+          <p class="class-drawer-sub" id="classDrawerSubTitle">Pilih hari & atur kelas</p>
+        </div>
+      </div>
+      <button type="button" class="class-drawer-close-btn" id="btnCloseClassDrawer" title="Tutup Drawer">✕</button>
+    </div>
+
+    <!-- Compact 7-Column Day Selector Grid -->
+    <div class="class-day-tabs" id="classDayTabs">
+      <!-- Populated by JS: SEN, SEL, RAB, KAM, JUM, SAB, MIN -->
+    </div>
+
+    <!-- List of Classes for Active Day -->
+    <div class="class-drawer-body" id="classDrawerBody">
+      <!-- Dynamically populated via JS -->
+    </div>
+
+    <!-- Footer Action Bar -->
+    <div class="class-drawer-footer">
+      <button type="button" class="btn-add-class-primary" id="btnDrawerAddClass">
+        <span>＋ Tambah Mata Kuliah Baru</span>
+      </button>
+      <button type="button" class="btn-add-day-secondary" id="btnDrawerAddDay">
+        <span>＋ Tambah Hari Baru</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- GLOBAL FLOATING CARD TOOLBAR (body-level, escapes overflow:hidden canvas) -->
+  <div id="globalCardToolbar" class="global-card-toolbar hidden" style="display:none !important;">
+    <button class="canva-btn-mini" id="gtbAddEvent" title="Tambah Mata Kuliah">+ Matkul</button>
+    <span class="gtb-divider"></span>
+    <div class="canva-color-swatches">
+      <span class="canva-swatch swatch-butter" data-color="butter" title="Butter"></span>
+      <span class="canva-swatch swatch-matcha" data-color="matcha" title="Matcha"></span>
+      <span class="canva-swatch swatch-peach" data-color="peach" title="Peach"></span>
+      <span class="canva-swatch swatch-lavender" data-color="lavender" title="Lavender"></span>
+      <span class="canva-swatch swatch-sky" data-color="sky" title="Sky"></span>
+      <button type="button" class="canva-card-color-wheel-btn btn-open-card-color-modal" id="gtbColorWheel" title="Color Picker">
+        <span class="color-wheel-swatch-icon">🎨</span>
+      </button>
+    </div>
+    <span class="gtb-divider"></span>
+    <button type="button" class="canva-btn-mini btn-card-toggle-pin" id="gtbTogglePin" title="Toggle Push Pin 📍">📍</button>
+    <button type="button" class="canva-btn-mini btn-card-toggle-clip" id="gtbToggleClip" title="Toggle Paperclip 📎">📎</button>
+    <button type="button" class="canva-btn-mini btn-card-toggle-tape" id="gtbToggleTape" title="Toggle Washi Tape">🎗️</button>
+    <span class="gtb-divider"></span>
+    <button class="canva-btn-mini" id="gtbDelete" style="color: #f87171;" title="Hapus Hari">✕ Hapus</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
