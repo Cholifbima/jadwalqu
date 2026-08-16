@@ -1057,17 +1057,50 @@ function switchTheme(themeName) {
   const titleHeading = document.getElementById("themeTitleHeading");
   const subtitleDesc = document.getElementById("themeSubtitleDesc");
 
+  const stampPill = document.getElementById("stampPillText");
+  const stampSubtitle = document.getElementById("stampSubtitleText");
+
   if (isPixel) {
     if (logoTag) logoTag.textContent = "THEME 02";
     if (titleHeading) titleHeading.textContent = "8-Bit Pixel Arcade";
     if (subtitleDesc) subtitleDesc.textContent = "Retro RPG Quest Log & Pixel Art Aesthetic";
+
+    if (stampPill) stampPill.textContent = "🎮 WEEKLY QUEST LOG";
+    if (stampSubtitle) stampSubtitle.textContent = "HP: 100/100 ❤️❤️❤️ | LEVEL 99 | SCORE: 99999";
+
+    // Set background & scrim to pixel arcade dark preset
+    state.bgTexture = "arcade-dark";
+    state.scrimType = "scrim-dark-pixel";
+
+    // Assign pixel RPG colors to schedule cards
+    const pixelColors = ["dark-slate", "pixel-green", "cyber-pink", "dungeon-gold", "void-purple", "arcade-crimson", "pixel-teal"];
+    state.schedule.forEach((day, idx) => {
+      day.color = pixelColors[idx % pixelColors.length];
+    });
+
   } else {
     if (logoTag) logoTag.textContent = "THEME 01";
     if (titleHeading) titleHeading.textContent = "Sticky Note Bento";
     if (subtitleDesc) subtitleDesc.textContent = "Tactile Stationery & Studygram Aesthetic";
+
+    if (stampPill) stampPill.textContent = "WEEKLY TIMETABLE";
+    if (stampSubtitle) stampSubtitle.textContent = "Semester Genap • 2026";
+
+    // Revert to Studygram warm linen preset
+    state.bgTexture = "warm-linen";
+    state.scrimType = "scrim-frosted-cream";
+
+    // Revert to pastel studygram colors
+    const pastelColors = ["butter", "matcha", "peach", "lavender", "sky", "kraft"];
+    state.schedule.forEach((day, idx) => {
+      day.color = pastelColors[idx % pastelColors.length];
+    });
   }
 
+  updateCanvasBackground();
+  applyCustomBackgroundStyles();
   renderScheduleCanvas();
+  renderSidebarEditor();
   saveStateToHistory();
 }
 

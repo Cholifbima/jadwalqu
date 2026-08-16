@@ -4583,3 +4583,260 @@ body.sidebar-is-expanded .ai-fab-btn,
   box-shadow: 2px 2px 0 rgba(0,0,0,0.3) !important;
   border-radius: 0px !important;
 }
+
+/* ==========================================================================
+   GLOBAL 8-BIT PIXEL ART THEME OVERRIDES (.body-theme-pixel-art)
+   ========================================================================== */
+.body-theme-pixel-art {
+  font-family: 'Silkscreen', 'Press Start 2P', monospace, sans-serif !important;
+  background-color: #060911 !important;
+}
+
+/* 1. Sidebar Panel Overrides in Pixel Mode */
+.body-theme-pixel-art .sidebar {
+  background: #0d121d !important;
+  border-right: 3px solid #000 !important;
+  box-shadow: 6px 0 0 #000 !important;
+}
+
+.body-theme-pixel-art .sidebar-header h1 {
+  font-family: 'Press Start 2P', cursive !important;
+  font-size: 13px !important;
+  color: #fbbf24 !important;
+  text-shadow: 2px 2px 0 #000, 0 0 10px rgba(251, 191, 36, 0.5) !important;
+  letter-spacing: 0.5px;
+}
+
+.body-theme-pixel-art .sidebar-header .logo-tag {
+  font-family: 'Press Start 2P', cursive !important;
+  font-size: 9px !important;
+  background: #f59e0b !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+  box-shadow: 2px 2px 0 #000 !important;
+  border-radius: 0px !important;
+}
+
+.body-theme-pixel-art .section-label {
+  font-family: 'Press Start 2P', cursive !important;
+  font-size: 9px !important;
+  color: #38bdf8 !important;
+  letter-spacing: 0.5px;
+}
+
+/* Pixel Cards, Buttons, and Selectors in Sidebar */
+.body-theme-pixel-art .ratio-btn,
+.body-theme-pixel-art .density-card,
+.body-theme-pixel-art .theme-select-card,
+.body-theme-pixel-art .drawer-capsule-btn,
+.body-theme-pixel-art .editor-day-card {
+  border-radius: 0px !important;
+  border: 3px solid #000 !important;
+  box-shadow: 3px 3px 0 #000 !important;
+  background: #161f2e !important;
+  transition: all 0.1s ease !important;
+}
+
+.body-theme-pixel-art .ratio-btn:hover,
+.body-theme-pixel-art .density-card:hover,
+.body-theme-pixel-art .theme-select-card:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 5px 5px 0 #000 !important;
+  background: #1e2d42 !important;
+}
+
+.body-theme-pixel-art .ratio-btn.active,
+.body-theme-pixel-art .density-card.active,
+.body-theme-pixel-art .theme-select-card.active {
+  background: #272115 !important;
+  border-color: #f59e0b !important;
+  box-shadow: 3px 3px 0 #000, 0 0 12px rgba(245, 158, 11, 0.4) !important;
+}
+
+.body-theme-pixel-art .ratio-title,
+.body-theme-pixel-art .chip-label,
+.body-theme-pixel-art .theme-card-title {
+  font-family: 'Silkscreen', cursive !important;
+  font-size: 11px !important;
+  color: #fbbf24 !important;
+}
+
+/* 2. Top Navigation Toolbar & Canvas Viewport */
+.body-theme-pixel-art .preview-toolbar {
+  background: #0d121d !important;
+  border: 3px solid #000 !important;
+  box-shadow: 4px 4px 0 #000 !important;
+  border-radius: 0px !important;
+}
+
+.body-theme-pixel-art .canva-mode-toggle-btn,
+.body-theme-pixel-art .canva-tool-action-btn,
+.body-theme-pixel-art .tool-btn-pill,
+.body-theme-pixel-art .canva-export-quick-btn {
+  border-radius: 0px !important;
+  border: 2px solid #000 !important;
+  box-shadow: 2px 2px 0 #000 !important;
+  font-family: 'Silkscreen', monospace !important;
+  font-size: 10px !important;
+  background: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+.body-theme-pixel-art .canva-mode-toggle-btn:hover,
+.body-theme-pixel-art .canva-tool-action-btn:hover {
+  background: #f59e0b !important;
+  color: #000 !important;
+}
+
+.body-theme-pixel-art .zoom-pill-wrap {
+  border-radius: 0px !important;
+  border: 2px solid #000 !important;
+  box-shadow: 2px 2px 0 #000 !important;
+  background: #0f172a !important;
+}
+
+.body-theme-pixel-art .zoom-level {
+  font-family: 'Press Start 2P', cursive !important;
+  font-size: 9px !important;
+  color: #4ade80 !important;
+}
+
+/* 3. Canvas Background & Scrim in Pixel Mode */
+.body-theme-pixel-art #scheduleCanvas {
+  background-color: #0d111a !important;
+  border: 4px solid #000 !important;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9) !important;
+  border-radius: 0px !important;
+}
+
+.body-theme-pixel-art .canvas-bg-image-layer {
+  background-image: 
+    linear-gradient(rgba(245, 158, 11, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.05) 1px, transparent 1px),
+    radial-gradient(#1e293b 2px, transparent 2px) !important;
+  background-size: 20px 20px, 20px 20px, 40px 40px !important;
+  background-position: -1px -1px, -1px -1px, 0 0 !important;
+  background-color: #0a0e17 !important;
+}
+
+.body-theme-pixel-art .canvas-scrim-layer {
+  background: rgba(10, 14, 23, 0.75) !important;
+}
+
+/* 4. Class Management Side Drawer & Modals in Pixel Mode */
+.body-theme-pixel-art .class-drawer-content,
+.body-theme-pixel-art .canva-color-modal-content,
+.body-theme-pixel-art .confirm-modal-box {
+  background: #0d121d !important;
+  border: 4px solid #000 !important;
+  box-shadow: 8px 8px 0 #000, 0 0 30px rgba(0,0,0,0.9) !important;
+  border-radius: 0px !important;
+}
+
+.body-theme-pixel-art .class-drawer-title,
+.body-theme-pixel-art .confirm-modal-title,
+.body-theme-pixel-art .canva-color-modal-title {
+  font-family: 'Press Start 2P', cursive !important;
+  font-size: 12px !important;
+  color: #fbbf24 !important;
+  text-shadow: 2px 2px 0 #000 !important;
+}
+
+.body-theme-pixel-art .class-day-tab-btn {
+  border-radius: 0px !important;
+  border: 2px solid #000 !important;
+  box-shadow: 2px 2px 0 #000 !important;
+  font-family: 'Press Start 2P', cursive !important;
+  font-size: 9px !important;
+  background: #162030 !important;
+}
+
+.body-theme-pixel-art .class-day-tab-btn.active {
+  background: #f59e0b !important;
+  color: #000 !important;
+  border-color: #000 !important;
+}
+
+.body-theme-pixel-art .class-item-card {
+  border-radius: 0px !important;
+  border: 3px solid #000 !important;
+  box-shadow: 4px 4px 0 #000 !important;
+  background: #131b29 !important;
+}
+
+.body-theme-pixel-art .class-input-field,
+.body-theme-pixel-art .ai-textarea,
+.body-theme-pixel-art .hex-input-field {
+  border-radius: 0px !important;
+  border: 2px solid #000 !important;
+  box-shadow: inset 2px 2px 0 #000 !important;
+  background: #090d16 !important;
+  color: #4ade80 !important;
+  font-family: 'Silkscreen', monospace !important;
+  font-size: 11px !important;
+}
+
+.body-theme-pixel-art .btn-drawer-add-class,
+.body-theme-pixel-art .ai-submit-btn,
+.body-theme-pixel-art .confirm-btn-action {
+  border-radius: 0px !important;
+  border: 3px solid #000 !important;
+  box-shadow: 3px 3px 0 #000 !important;
+  font-family: 'Press Start 2P', cursive !important;
+  font-size: 10px !important;
+  background: #f59e0b !important;
+  color: #000 !important;
+}
+
+.body-theme-pixel-art .ai-fab-btn {
+  border-radius: 0px !important;
+  border: 3px solid #000 !important;
+  box-shadow: 4px 4px 0 #000, 0 0 15px rgba(245, 158, 11, 0.4) !important;
+  font-family: 'Press Start 2P', cursive !important;
+  font-size: 9px !important;
+  background: #f59e0b !important;
+  color: #000 !important;
+}
+
+/* Pixel Card Color Variants */
+.theme-pixel-art .sticky-note-card.card-color-butter,
+.theme-pixel-art .sticky-note-card.card-color-dark-slate {
+  background: #151d2a !important;
+  color: #f1f5f9 !important;
+  border-color: #38bdf8 !important;
+}
+
+.theme-pixel-art .sticky-note-card.card-color-matcha,
+.theme-pixel-art .sticky-note-card.card-color-pixel-green {
+  background: #14261c !important;
+  color: #f1f5f9 !important;
+  border-color: #4ade80 !important;
+}
+
+.theme-pixel-art .sticky-note-card.card-color-peach,
+.theme-pixel-art .sticky-note-card.card-color-cyber-pink {
+  background: #2b1820 !important;
+  color: #f1f5f9 !important;
+  border-color: #fb7185 !important;
+}
+
+.theme-pixel-art .sticky-note-card.card-color-lavender,
+.theme-pixel-art .sticky-note-card.card-color-void-purple {
+  background: #211933 !important;
+  color: #f1f5f9 !important;
+  border-color: #c084fc !important;
+}
+
+.theme-pixel-art .sticky-note-card.card-color-sky,
+.theme-pixel-art .sticky-note-card.card-color-pixel-teal {
+  background: #12252e !important;
+  color: #f1f5f9 !important;
+  border-color: #2dd4bf !important;
+}
+
+.theme-pixel-art .sticky-note-card.card-color-kraft,
+.theme-pixel-art .sticky-note-card.card-color-dungeon-gold {
+  background: #292014 !important;
+  color: #f1f5f9 !important;
+  border-color: #fbbf24 !important;
+}
