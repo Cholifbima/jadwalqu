@@ -2006,7 +2006,67 @@ function getTapeClass(color) {
 // ============================================================
 // DEDICATED CLASS MANAGEMENT SIDE-OVER DRAWER (RIGHT PANEL)
 // ============================================================
-let activeClassDrawerDayIndex = 0;
+// ==========================================================================
+// AESTHETIC MODERN CONFIRMATION MODAL HELPER
+// ==========================================================================
+function showConfirmModal({ title, message, confirmText = "Ya, Hapus", cancelText = "Batal", icon = "🗑️", isDanger = true }) {
+  return new Promise((resolve) => {
+    const overlay = document.getElementById("confirmModalOverlay");
+    const badge = document.getElementById("confirmModalBadge");
+    const iconEl = document.getElementById("confirmModalIcon");
+    const titleEl = document.getElementById("confirmModalTitle");
+    const messageEl = document.getElementById("confirmModalMessage");
+    const btnCancel = document.getElementById("btnConfirmCancel");
+    const btnAction = document.getElementById("btnConfirmAction");
+
+    if (!overlay || !btnAction || !btnCancel) {
+      resolve(confirm(`${title}\n${message}`));
+      return;
+    }
+
+    if (iconEl) iconEl.textContent = icon;
+    if (titleEl) titleEl.textContent = title;
+    if (messageEl) messageEl.textContent = message;
+    if (btnCancel) btnCancel.textContent = cancelText;
+
+    if (btnAction) {
+      btnAction.textContent = confirmText;
+      if (isDanger) {
+        btnAction.className = "confirm-btn-action";
+        if (badge) badge.className = "confirm-modal-badge";
+      } else {
+        btnAction.className = "confirm-btn-action is-warning";
+        if (badge) badge.className = "confirm-modal-badge is-warning";
+      }
+    }
+
+    overlay.style.display = "flex";
+
+    const cleanup = () => {
+      overlay.style.display = "none";
+      btnAction.onclick = null;
+      btnCancel.onclick = null;
+      overlay.onclick = null;
+    };
+
+    btnAction.onclick = () => {
+      cleanup();
+      resolve(true);
+    };
+
+    btnCancel.onclick = () => {
+      cleanup();
+      resolve(false);
+    };
+
+    overlay.onclick = (e) => {
+      if (e.target === overlay) {
+        cleanup();
+        resolve(false);
+      }
+    };
+  });
+}
 
 function openClassManagementDrawer(dayIdx) {
   const drawer = document.getElementById("classManagementDrawer");
@@ -2143,13 +2203,18 @@ function renderClassManagementDrawer() {
   if (btnDeleteDay) {
     btnDeleteDay.disabled = state.schedule.length <= 1;
     btnDeleteDay.title = state.schedule.length <= 1 ? "Minimal harus ada 1 hari" : `Hapus Hari ${activeDay.day}`;
-    btnDeleteDay.onclick = () => {
-      if (state.schedule.length <= 1) {
-        alert("Jadwal harus memiliki minimal 1 hari!");
-        return;
-      }
-      const dayName = activeDay ? activeDay.day : "ini";
-      if (confirm(`Hapus seluruh kartu hari ${dayName.toUpperCase()} beserta mata kuliahnya?`)) {
+    btnDeleteDay.onclick = async () => {
+      if (state.schedule.length <= 1) return;
+      const dayName = activeDay ? activeDay.day.toUpperCase() : "INI";
+      const ok = await showConfirmModal({
+        title: `Hapus Hari ${dayName}?`,
+        message: `Seluruh jadwal & mata kuliah pada hari ${dayName} akan dihapus dari papan.`,
+        confirmText: "Ya, Hapus Hari",
+        cancelText: "Batal",
+        icon: "🗑️",
+        isDanger: true
+      });
+      if (ok) {
         state.schedule.splice(activeClassDrawerDayIndex, 1);
         activeClassDrawerDayIndex = Math.max(0, activeClassDrawerDayIndex - 1);
         renderScheduleCanvas();
@@ -2427,12 +2492,28 @@ function setupGlobalToolbar() {
   });
 
   // Delete Day
-  document.getElementById("gtbDelete")?.addEventListener("click", (e) => {
+  document.getElementById("gtbDelete")?.addEventListener("click", async (e) => {
     e.stopPropagation();
     if (_gtbActiveIndex === null) return;
-    state.schedule.splice(_gtbActiveIndex, 1);
-    hideGlobalToolbar();
-    renderScheduleCanvas(); renderSidebarEditor(); saveStateToHistory();
+    if (state.schedule.length <= 1) return;
+
+    const dayData = state.schedule[_gtbActiveIndex];
+    const dayName = dayData ? dayData.day.toUpperCase() : "INI";
+
+    const ok = await showConfirmModal({
+      title: `Hapus Hari ${dayName}?`,
+      message: `Seluruh jadwal & mata kuliah pada hari ${dayName} akan dihapus dari papan.`,
+      confirmText: "Ya, Hapus Hari",
+      cancelText: "Batal",
+      icon: "🗑️",
+      isDanger: true
+    });
+
+    if (ok) {
+      state.schedule.splice(_gtbActiveIndex, 1);
+      hideGlobalToolbar();
+      renderScheduleCanvas(); renderSidebarEditor(); saveStateToHistory();
+    }
   });
 
   // Failsafe: Hide toolbar & deselect cards whenever clicking ANYWHERE outside sticky notes and quicktool

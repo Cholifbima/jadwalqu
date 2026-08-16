@@ -845,6 +845,19 @@
     <button type="button" class="canva-btn-mini btn-card-toggle-tape" id="gtbToggleTape" title="Toggle Washi Tape">🎗️</button>
     <span class="gtb-divider"></span>
     <button class="canva-btn-mini" id="gtbDelete" style="color: #f87171;" title="Hapus Hari">✕ Hapus</button>
+  <!-- AESTHETIC MODERN CONFIRMATION MODAL -->
+  <div class="canva-color-modal-overlay confirm-modal-overlay" id="confirmModalOverlay" style="display: none;">
+    <div class="confirm-modal-box">
+      <div class="confirm-modal-badge" id="confirmModalBadge">
+        <span id="confirmModalIcon">🗑️</span>
+      </div>
+      <h3 class="confirm-modal-title" id="confirmModalTitle">Hapus Hari Ini?</h3>
+      <p class="confirm-modal-message" id="confirmModalMessage">Tindakan ini akan menghapus seluruh jadwal dan mata kuliah pada hari ini.</p>
+      <div class="confirm-modal-actions">
+        <button type="button" class="confirm-btn-cancel" id="btnConfirmCancel">Batal</button>
+        <button type="button" class="confirm-btn-action" id="btnConfirmAction">Ya, Hapus</button>
+      </div>
+    </div>
   </div>
 
   <script src="app.js"></script>
