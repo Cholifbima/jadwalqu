@@ -2040,10 +2040,10 @@ function showConfirmModal({ title, message, confirmText = "Ya, Hapus", cancelTex
       }
     }
 
-    overlay.style.display = "flex";
+    overlay.style.setProperty("display", "flex", "important");
 
     const cleanup = () => {
-      overlay.style.display = "none";
+      overlay.style.setProperty("display", "none", "important");
       btnAction.onclick = null;
       btnCancel.onclick = null;
       overlay.onclick = null;
