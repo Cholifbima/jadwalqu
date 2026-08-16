@@ -2214,19 +2214,43 @@ function positionGlobalToolbar(cardEl) {
 
   requestAnimationFrame(() => {
     const rect = cardEl.getBoundingClientRect();
-    const margin = 8;
     const vw = window.innerWidth;
-    const tbW = globalCardToolbar.offsetWidth || 230;
-    const tbH = globalCardToolbar.offsetHeight || 30;
+    const vh = window.innerHeight;
+    const tbW = globalCardToolbar.offsetWidth || 260;
+    const tbH = globalCardToolbar.offsetHeight || 36;
 
-    // Position above the card; flip below if not enough space above
+    // Detect top header & typography ribbon clearance bounds
+    const previewHeader = document.getElementById("previewToolbar");
+    const typoRibbon = document.getElementById("canvaTypographyRibbon");
+
+    let minTopAllowed = 12;
+    if (previewHeader) {
+      const hRect = previewHeader.getBoundingClientRect();
+      if (hRect.bottom > 0) minTopAllowed = Math.max(minTopAllowed, hRect.bottom + 8);
+    }
+    if (typoRibbon && typoRibbon.classList.contains("is-open")) {
+      const rRect = typoRibbon.getBoundingClientRect();
+      if (rRect.bottom > 0) minTopAllowed = Math.max(minTopAllowed, rRect.bottom + 8);
+    }
+
+    // Default: position above card. If top is above minTopAllowed, flip below card!
     let top = rect.top - tbH - 8;
-    if (top < margin) top = rect.bottom + 8;
+    if (top < minTopAllowed) {
+      top = rect.bottom + 8;
+    }
 
-    // Center horizontally on card, clamp strictly inside screen bounds [margin, vw - tbW - margin]
+    // Clamp top to stay within viewport bottom
+    if (top + tbH > vh - 12) {
+      top = Math.max(minTopAllowed, vh - tbH - 12);
+    }
+
+    // Center horizontally on card, clamp strictly inside screen bounds
+    const sideMargin = 10;
     let left = rect.left + (rect.width / 2) - (tbW / 2);
-    left = Math.max(margin, Math.min(vw - tbW - margin, left));
+    left = Math.max(sideMargin, Math.min(vw - tbW - sideMargin, left));
 
+    globalCardToolbar.style.position = "fixed";
+    globalCardToolbar.style.zIndex = "999999";
     globalCardToolbar.style.top = top + "px";
     globalCardToolbar.style.left = left + "px";
     globalCardToolbar.style.right = "auto";
