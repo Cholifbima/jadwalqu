@@ -4155,9 +4155,16 @@ body.sidebar-is-expanded .ai-fab-btn,
   box-shadow: 0 6px 18px rgba(245, 158, 11, 0.45);
 }
 
-.btn-add-day-secondary {
+.drawer-secondary-actions {
+  display: flex;
+  gap: 8px;
   width: 100%;
-  padding: 8px;
+}
+
+.btn-add-day-secondary,
+.btn-delete-day-secondary {
+  flex: 1;
+  padding: 8px 6px;
   font-size: 11.5px;
   font-weight: 600;
   border-radius: 8px;
@@ -4166,11 +4173,31 @@ body.sidebar-is-expanded .ai-fab-btn,
   border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
   transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-add-day-secondary:hover {
   background: rgba(255, 255, 255, 0.1);
   color: #f1f5f9;
+}
+
+.btn-delete-day-secondary {
+  background: rgba(239, 68, 68, 0.12);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.25);
+}
+
+.btn-delete-day-secondary:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.25);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+.btn-delete-day-secondary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 /* Clean Class Summary Box in Bottom Drawer */

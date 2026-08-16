@@ -2129,6 +2129,62 @@ function renderClassManagementDrawer() {
       drawerBody.appendChild(card);
     });
   }
+
+  // 3. Bind Footer Buttons (Add Class, Add Day, Delete Current Day)
+  const btnAddClass = document.getElementById("btnDrawerAddClass");
+  const btnAddDay = document.getElementById("btnDrawerAddDay");
+  const btnDeleteDay = document.getElementById("btnDrawerDeleteDay");
+  const btnClose = document.getElementById("btnCloseClassDrawer");
+
+  if (btnClose) {
+    btnClose.onclick = closeClassManagementDrawer;
+  }
+
+  if (btnDeleteDay) {
+    btnDeleteDay.disabled = state.schedule.length <= 1;
+    btnDeleteDay.title = state.schedule.length <= 1 ? "Minimal harus ada 1 hari" : `Hapus Hari ${activeDay.day}`;
+    btnDeleteDay.onclick = () => {
+      if (state.schedule.length <= 1) {
+        alert("Jadwal harus memiliki minimal 1 hari!");
+        return;
+      }
+      const dayName = activeDay ? activeDay.day : "ini";
+      if (confirm(`Hapus seluruh kartu hari ${dayName.toUpperCase()} beserta mata kuliahnya?`)) {
+        state.schedule.splice(activeClassDrawerDayIndex, 1);
+        activeClassDrawerDayIndex = Math.max(0, activeClassDrawerDayIndex - 1);
+        renderScheduleCanvas();
+        renderClassManagementDrawer();
+        renderSidebarEditor();
+        saveStateToHistory();
+      }
+    };
+  }
+
+  if (btnAddClass) {
+    btnAddClass.onclick = () => {
+      if (!activeDay.events) activeDay.events = [];
+      activeDay.events.push({
+        id: "e" + Date.now(),
+        time: "09:00 - 11:30",
+        subject: "Mata Kuliah Baru",
+        room: "R. 101",
+        note: "Catatan penting"
+      });
+      renderScheduleCanvas();
+      renderClassManagementDrawer();
+      renderSidebarEditor();
+      saveStateToHistory();
+    };
+  }
+
+  if (btnAddDay) {
+    btnAddDay.onclick = () => {
+      addNewScheduleDay();
+      activeClassDrawerDayIndex = state.schedule.length - 1;
+      renderClassManagementDrawer();
+      saveStateToHistory();
+    };
+  }
 }
 
 // Render Clean Sidebar Editor Summary Box
