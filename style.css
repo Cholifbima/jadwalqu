@@ -4417,3 +4417,169 @@ body.sidebar-is-expanded .ai-fab-btn,
   background: linear-gradient(135deg, #fbbf24, #f59e0b);
   box-shadow: 0 6px 18px rgba(245, 158, 11, 0.55);
 }
+
+/* ==========================================================================
+   THEME SELECTION SWITCHER CARDS (SIDEBAR)
+   ========================================================================== */
+.theme-select-section {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.theme-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.theme-select-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-select-card:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(245, 158, 11, 0.4);
+  transform: translateY(-2px);
+}
+
+.theme-select-card.active {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: #f59e0b;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.25);
+}
+
+.theme-card-badge {
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+  width: fit-content;
+}
+
+.theme-card-badge.pixel-badge {
+  background: rgba(168, 85, 247, 0.2);
+  color: #c084fc;
+}
+
+.theme-card-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.2;
+}
+
+.theme-card-desc {
+  font-size: 9.5px;
+  color: #94a3b8;
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   THEME 02: 8-BIT PIXEL ARCADE / RETRO RPG QUEST LOG ENGINE
+   ========================================================================== */
+.theme-pixel-art {
+  font-family: 'Silkscreen', 'Press Start 2P', monospace, sans-serif !important;
+  image-rendering: pixelated !important;
+  image-rendering: crisp-edges !important;
+}
+
+.theme-pixel-art .canvas-bg-image-layer {
+  background-image: radial-gradient(#1e293b 1.5px, transparent 1.5px), radial-gradient(#0f172a 1.5px, #090d16 1.5px) !important;
+  background-size: 24px 24px !important;
+  background-position: 0 0, 12px 12px !important;
+}
+
+/* Retro Arcade Header Stamp */
+.theme-pixel-art .stamp-pill {
+  font-family: 'Press Start 2P', cursive !important;
+  font-size: 11px !important;
+  letter-spacing: 1px !important;
+  background: #0f172a !important;
+  color: #fbbf24 !important;
+  border: 3px solid #f59e0b !important;
+  box-shadow: 4px 4px 0 #000, 0 0 12px rgba(245, 158, 11, 0.4) !important;
+  padding: 6px 14px !important;
+  border-radius: 0px !important;
+  text-transform: uppercase;
+}
+
+.theme-pixel-art .handwritten-accent {
+  font-family: 'Silkscreen', monospace !important;
+  font-size: 10px !important;
+  color: #38bdf8 !important;
+  text-shadow: 2px 2px 0 #000;
+}
+
+/* RPG Pixel Sticky Note Cards */
+.theme-pixel-art .sticky-note-card {
+  border-radius: 4px !important;
+  border: 3.5px solid #0f172a !important;
+  box-shadow: 6px 6px 0 #000, 0 0 20px rgba(0, 0, 0, 0.5) !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.theme-pixel-art .sticky-note-card:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 8px 8px 0 #000, 0 0 25px rgba(245, 158, 11, 0.35) !important;
+}
+
+.theme-pixel-art .card-day-title {
+  font-family: 'Press Start 2P', cursive !important;
+  font-size: 10.5px !important;
+  letter-spacing: 0.5px !important;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.theme-pixel-art .card-event-item {
+  border-radius: 2px !important;
+  border: 2px solid rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3) !important;
+  padding: 6px 8px !important;
+}
+
+.theme-pixel-art .event-subject-name {
+  font-family: 'Silkscreen', cursive, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+}
+
+.theme-pixel-art .event-time-badge,
+.theme-pixel-art .event-room-badge {
+  font-family: 'VT323', monospace !important;
+  font-size: 12px !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Retro Pixel Pin / Clip / Tape */
+.theme-pixel-art .sticky-pin-icon {
+  width: 14px !important;
+  height: 14px !important;
+  background: #ef4444 !important;
+  border: 2px solid #000 !important;
+  box-shadow: 2px 2px 0 #000 !important;
+  border-radius: 0px !important;
+}
+
+.theme-pixel-art .washi-tape-strip {
+  border: 2px solid rgba(0,0,0,0.5) !important;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.3) !important;
+  border-radius: 0px !important;
+}

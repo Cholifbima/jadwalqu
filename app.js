@@ -91,6 +91,7 @@ const SAMPLE_SCHEDULE = [
 
 // App State
 let state = {
+  theme: "studygram", // "studygram" or "pixelart"
   ratio: "phone", // phone, desktop, tablet, sticky
   mobileLayout: "dual-column", // dual-column, single-column
   density: "compact", // compact, ultra, comfortable
@@ -1033,8 +1034,49 @@ function rgbToHex(rgb) {
                       ("0" + parseInt(result[3], 10).toString(16)).slice(-2) : null;
 }
 
+// ==========================================================================
+// DYNAMIC THEME ENGINE (THEME 1: STUDYGRAM vs THEME 2: 8-BIT PIXEL ARCADE)
+// ==========================================================================
+function switchTheme(themeName) {
+  state.theme = themeName;
+  const isPixel = (themeName === "pixelart");
+
+  document.body.classList.toggle("body-theme-pixel-art", isPixel);
+  if (scheduleCanvas) {
+    scheduleCanvas.classList.toggle("theme-pixel-art", isPixel);
+  }
+
+  // Update theme buttons UI
+  const btnStudygram = document.getElementById("btnThemeStudygram");
+  const btnPixel = document.getElementById("btnThemePixelart");
+  if (btnStudygram) btnStudygram.classList.toggle("active", !isPixel);
+  if (btnPixel) btnPixel.classList.toggle("active", isPixel);
+
+  // Update sidebar header text
+  const logoTag = document.getElementById("themeLogoTag");
+  const titleHeading = document.getElementById("themeTitleHeading");
+  const subtitleDesc = document.getElementById("themeSubtitleDesc");
+
+  if (isPixel) {
+    if (logoTag) logoTag.textContent = "THEME 02";
+    if (titleHeading) titleHeading.textContent = "8-Bit Pixel Arcade";
+    if (subtitleDesc) subtitleDesc.textContent = "Retro RPG Quest Log & Pixel Art Aesthetic";
+  } else {
+    if (logoTag) logoTag.textContent = "THEME 01";
+    if (titleHeading) titleHeading.textContent = "Sticky Note Bento";
+    if (subtitleDesc) subtitleDesc.textContent = "Tactile Stationery & Studygram Aesthetic";
+  }
+
+  renderScheduleCanvas();
+  saveStateToHistory();
+}
+
 // Setup Event Listeners
 function setupEventListeners() {
+  // Theme Selection
+  document.getElementById("btnThemeStudygram")?.addEventListener("click", () => switchTheme("studygram"));
+  document.getElementById("btnThemePixelart")?.addEventListener("click", () => switchTheme("pixelart"));
+
   // Mobile Floating Bottom Sheet Drawer
   const sidebar = document.getElementById("sidebar");
   const drawerHandleBar = document.getElementById("drawerHandleBar");

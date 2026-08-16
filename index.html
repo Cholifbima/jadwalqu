@@ -6,7 +6,7 @@
   <title>Jadwalku Studio - Theme 1: Sticky Note Bento</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500;600;700&family=Kalam:wght@400;700&family=Montserrat:wght@400;600;700;800&family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500;600;700&family=Kalam:wght@400;700&family=Montserrat:wght@400;600;700;800&family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <!-- html2canvas for high-res export -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -28,10 +28,27 @@
       </div>
 
       <div class="sidebar-scroll-content" id="sidebarScrollContent">
-        <div class="sidebar-header">
-          <div class="logo-tag">THEME 01</div>
-          <h1>Sticky Note Bento</h1>
-          <p class="subtitle">Tactile Stationery & Studygram Aesthetic</p>
+        <div class="sidebar-header" id="sidebarHeader">
+          <div class="logo-tag" id="themeLogoTag">THEME 01</div>
+          <h1 id="themeTitleHeading">Sticky Note Bento</h1>
+          <p class="subtitle" id="themeSubtitleDesc">Tactile Stationery & Studygram Aesthetic</p>
+        </div>
+
+        <!-- SECTION: THEME SELECTION SWITCHER -->
+        <div class="control-section theme-select-section">
+          <label class="section-label">Pilih Tema Tampilan Studio</label>
+          <div class="theme-card-grid">
+            <button type="button" class="theme-select-card active" data-theme="studygram" id="btnThemeStudygram">
+              <span class="theme-card-badge">THEME 01</span>
+              <span class="theme-card-title">📝 Studygram Bento</span>
+              <span class="theme-card-desc">Sticky Note & Stationery</span>
+            </button>
+            <button type="button" class="theme-select-card" data-theme="pixelart" id="btnThemePixelart">
+              <span class="theme-card-badge pixel-badge">THEME 02</span>
+              <span class="theme-card-title">👾 8-Bit Pixel Arcade</span>
+              <span class="theme-card-desc">Retro RPG Quest Log</span>
+            </button>
+          </div>
         </div>
 
         <div class="control-section">
@@ -486,8 +503,20 @@
                 <span class="font-badge">Modern Bold</span>
               </button>
               <button type="button" class="font-menu-item" data-font="Space Mono" style="font-family: 'Space Mono', monospace;">
-                <span class="font-preview-name">Space Mono</span>
+                <span class="font-preview-name">Space Mono Code</span>
                 <span class="font-badge">Retro Code</span>
+              </button>
+              <button type="button" class="font-menu-item" data-font="Press Start 2P" style="font-family: 'Press Start 2P', cursive; font-size: 10px;">
+                <span class="font-preview-name">Press Start 8-Bit</span>
+                <span class="font-badge">👾 Pixel 8-Bit</span>
+              </button>
+              <button type="button" class="font-menu-item" data-font="Silkscreen" style="font-family: 'Silkscreen', cursive;">
+                <span class="font-preview-name">Silkscreen Arcade</span>
+                <span class="font-badge">🎮 Pixel Game</span>
+              </button>
+              <button type="button" class="font-menu-item" data-font="VT323" style="font-family: 'VT323', monospace; font-size: 16px;">
+                <span class="font-preview-name">VT323 Retro CRT</span>
+                <span class="font-badge">📺 CRT Retro</span>
               </button>
             </div>
           </div>
